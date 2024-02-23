@@ -46,11 +46,11 @@ def drawRect(axes):
 
 def drawPath(axes):
     
-    f = open('Coordinate.txt')
-    string = ''
-    string = f.read()
-    print(string)
-    vertices = [(string[0], string[1]), (string[2], string[3]), (string[4], string[5]), (string[0], string[1])] #те самые значения из файла
+    with open('Coordinate.txt', 'r') as file:
+        lines = file.readlines()
+
+
+    vertices = [(lines[0], lines[1]), (lines[2], lines[3]), (lines[4], lines[5]), (lines[0], lines[1])] #те самые значения из файла
     codes = [matplotlib.path.Path.MOVETO,
              matplotlib.path.Path.LINETO,
              matplotlib.path.Path.LINETO,
@@ -61,12 +61,12 @@ def drawPath(axes):
     path_patch = matplotlib.patches.PathPatch(path, fill=False)
     axes.add_patch(path_patch)
 
-    plt.text(1.5, -1.75, "Path", horizontalalignment="center")
+    #plt.text(1.5, -1.75, "Path", horizontalalignment="center")
 
 
 if __name__ == "__main__":
-    plt.xlim(0, 10)
-    plt.ylim(0, 10)
+    plt.xlim(-10, 10)
+    plt.ylim(-10, 10)
     plt.grid()
 
     # Получим текущие оси

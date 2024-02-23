@@ -6,7 +6,7 @@
 
 using namespace std;
 
-SquareTriangle::SquareTriangle(int points[])
+SquareTriangle::SquareTriangle(int* points)
 {
 	//Проверка на наличие прямого угла
 	float a = sqrt(pow((points[2] - points[0]), 2) + pow((points[3] - points[1]), 2));
@@ -18,12 +18,12 @@ SquareTriangle::SquareTriangle(int points[])
 
 	if ((a*a==b*b+c*c) || (b*b==a*a+c*c) || (c*c==a*a+b*b)) 
 	{
-		cor_ver1x = points[0];
-		cor_ver1y = points[1];
-		cor_ver2x = points[2];
-		cor_ver2y = points[3];
-		cor_ver3x = points[4];
-		cor_ver3y = points[5];
+		cor_ver[0] = points[0];
+		cor_ver[1] = points[1];
+		cor_ver[2] = points[2];
+		cor_ver[3] = points[3];
+		cor_ver[4] = points[4];
+		cor_ver[5] = points[5];
 		/*...*/
 	}
 	else
@@ -32,14 +32,11 @@ SquareTriangle::SquareTriangle(int points[])
 	}
 }
 
-// Посмотреть лекцию Линского про классы, потому что башка уже не работает
-
-
-void SquareTriangle::yAxis(int* points)
+void SquareTriangle::yAxis()
 {
-	cor_ver1x = -cor_ver1x;
-	cor_ver2x = -cor_ver2x;
-	cor_ver3x = -cor_ver3x;
+	cor_ver[0] = -cor_ver[0]; //points[0]
+	cor_ver[2] = -cor_ver[2];
+	cor_ver[4] = -cor_ver[4];
 	/*...*/
 }
 
@@ -54,8 +51,46 @@ void SquareTriangle::scalingDownTriangle(int* points, int k)
 	/*...*/
 }
 
-void SquareTriangle::turnSquare(int* points)
+void SquareTriangle::turnSquare()
 {
+	//x1 = x*cos(90) - y*sin(90); x1 = -y определние после поворота на 90 градусов
+	//y1 = x*sin(90) - y*cos(90); y1 = x
+	int tmp;
+	tmp = cor_ver[0];
+	cor_ver[0] = -cor_ver[1];
+	cor_ver[1] = tmp;
+
+	tmp = cor_ver[2];
+	cor_ver[2] = -cor_ver[3];
+	cor_ver[3] = tmp;
+
+	tmp = cor_ver[4];
+	cor_ver[4] = -cor_ver[5];
+	cor_ver[5] = tmp;
+
+
+
+	/*int xTurn;//определение координат прямого угла
+	int yTurn;
+	float a = sqrt(pow((points[2] - points[0]), 2) + pow((points[3] - points[1]), 2));
+	float b = sqrt(pow((points[4] - points[2]), 2) + pow((points[5] - points[3]), 2));
+	float c = sqrt(pow((points[0] - points[4]), 2) + pow((points[1] - points[5]), 2));
+	if (a*a==b*b+c*c)
+	{
+		xTurn = points[4];
+		yTurn = points[5];
+		//points4,5
+	}
+	if else (b*b==a*a+c*c)
+	{
+		xTurn = points[0];
+		yTurn = points[1];
+	}
+	else
+	{
+		xTurn = points[2];
+		yTurn = points[3];
+	}*/
 	/*...*/
 }
 

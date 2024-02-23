@@ -10,9 +10,11 @@ int main()
 
 	SquareTriangle t(points);
 	
-	//yAxis(&t) // так мы будем вызывать функцию, чтобы данные в структуре менялись!!_))
 
-	cout << '\n' << t.cor_ver2x;
+	//t.turnSquare();
+	//t.yAxis(); // так мы будем вызывать функцию, чтобы данные в структуре менялись!!_))
+
+	//cout << '\n' << t.cor_ver1x;
 
 	std::ofstream out;          // поток для записи
     out.open("Coordinate.txt");      // открываем файл для записи
@@ -20,11 +22,11 @@ int main()
     {
     	for(int i = 0; i < 6; i++)
     	{
-        	out << points[i];
+        	out << t.cor_ver[i] << '\n';
     	}
     }
     out.close(); 
-    std::cout << "File has been written" << std::endl;
+    cout << "File has been written" << std::endl;
 
 	return 0;
 }
